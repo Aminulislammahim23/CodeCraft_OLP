@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+}
+
+.forget-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    width: 45%;
+    background: linear-gradient(135deg,#0f172a,#0ea5a4);
+    color: #fff;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+.subtitle {
+    margin: 10px 0 30px;
+    opacity: 0.9;
+}
+
+.forget-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.forget-form label {
+    font-size: 14px;
+}
+
+.forget-form input {
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.btn {
+    padding: 12px;
+    background: #c4f492;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    color: #e4f9c9;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    width: 55%;
+    background: url("https://images.unsplash.com/photo-1521790361543-f645cf042ec4") no-repeat center center / cover;
+    position: relative;
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    background: rgba(0,0,0,0.55);
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.overlay-text h2 {
+    font-size: 26px;
+}
+
+.overlay-text p {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .forget-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        height: 55vh;
+    }
+
+    .overlay-text {
+        left: 20px;
+        bottom: 20px;
+    }
+}
