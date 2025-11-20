@@ -81,7 +81,7 @@ h1 {
     font-size: 14px;
 }
 
-/* RIGHT PANEL */
+
 .right-panel {
     width: 70%;
     background: url("https://images.unsplash.com/photo-1553877522-43269d4ea984") no-repeat center center / cover;
@@ -107,7 +107,7 @@ h1 {
     font-size: 15px;
 }
 
-/* MOBILE READY */
+
 @media (max-width: 900px) {
     .login-container {
         flex-direction: column;
