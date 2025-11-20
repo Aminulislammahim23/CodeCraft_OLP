@@ -14,7 +14,7 @@ body {
     height: 100vh;
 }
 
-/* LEFT PANEL */
+
 .left-panel {
     width: 45%;
     background: linear-gradient(135deg,#0f172a,#0ea5a4);
@@ -82,7 +82,7 @@ h1 {
     font-size: 14px;
 }
 
-/* RIGHT PANEL */
+
 .right-panel {
     width: 55%;
     background: url("https://images.unsplash.com/photo-1521790361543-f645cf042ec4") no-repeat center center / cover;
@@ -108,7 +108,7 @@ h1 {
     font-size: 15px;
 }
 
-/* RESPONSIVE */
+
 @media (max-width: 900px) {
     .forget-container {
         flex-direction: column;

@@ -1,0 +1,177 @@
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: 
+    border-box; 
+    font-family: "Poppins", sans-serif; 
+}
+
+body { 
+    background: linear-gradient(135deg,#0f172a,#0ea5a4); 
+}
+
+.container { 
+    display: flex; 
+    min-height: 100vh; 
+}
+
+.sidebar { 
+    width: 240px; 
+    background: #0f172a; 
+    color: white; 
+    padding: 25px 18px;
+    background: linear-gradient(180deg, #0f172a, #1e293b); box-shadow: 4px 0 15px rgba(0,0,0,0.2);
+}
+
+.logo { 
+    font-size: 24px; 
+    font-weight: 700; 
+    margin-bottom: 40px; 
+}
+
+.logo span { 
+    color: #38bdf8; 
+    font-size: 15px; 
+}
+
+.menu { 
+    list-style: none;
+}
+
+.menu li { 
+    margin-bottom: 12px; 
+}
+
+.menu li a {
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+    padding: 12px; 
+    border-radius: 8px; 
+    text-decoration: none; 
+    color: #e2e8f0;
+    transition: 0.3s; 
+    font-weight: 500;
+}
+
+.menu li a:hover, .menu li a.active {
+            background: #334155; 
+            color: #38bdf8; 
+            transform: translateX(5px);
+        }
+        .logout { 
+            background: #ef4444 !important; 
+            text-align: center; 
+            font-weight: 600; 
+        }
+        .logout:hover { 
+            background: #dc2626 !important; 
+        }
+
+        .main { flex: 1; 
+            padding: 30px; 
+        }
+
+        .topbar { display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 30px; 
+        }
+        .topbar h1 { font-size: 28px; 
+            font-weight: 700; 
+            color: #000000; 
+        }
+        .student-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        .student-info img { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            border: 3px solid #38bdf8; 
+        }
+
+      
+        .cards { display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 22px; margin-bottom: 35px; 
+        }
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.18);
+        }
+        .card h3 { font-size: 18px; 
+            color: #475569; 
+        }
+        .card p { font-size: 26px; 
+            color: #2563eb; 
+            font-weight: bold; 
+            margin-top: 8px; 
+        }
+
+        table { width: 100%; 
+            background: white; 
+            border-radius: 12px; 
+            border-collapse: collapse; 
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+        }
+        th, td { 
+            padding: 14px; 
+            border-bottom: 1px solid #e2e8f0; 
+            font-size: 15px; 
+        }
+        th { 
+            background: #2563eb; 
+            color: white; 
+            text-align: left; 
+            font-size: 16px; 
+        }
+
+        .btn { 
+            padding: 8px 14px; 
+            background: #2563eb; 
+            color: white; 
+            border-radius: 6px; 
+            text-decoration: none; 
+            transition: 0.3s; 
+        }
+        .btn:hover { 
+            background: #1d4ed8; 
+            box-shadow: 0 2px 10px rgba(37,99,235,0.4); 
+        }
+
+        .progress-bar {
+            width: 100%; 
+            background: #e2e8f0; 
+            height: 10px; 
+            border-radius: 30px; 
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; 
+            background: #38bdf8; 
+            border-radius: 30px;
+        }
+
+        @media (max-width: 920px) {
+            .cards { grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; text-align: center; }
+            .menu li a { justify-content: center; }
+            .cards { grid-template-columns: 1fr; }
+            .topbar { flex-direction: column; gap: 10px; }
+        }
