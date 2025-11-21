@@ -1,0 +1,69 @@
+body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg,#0f172a,#0ea5a4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+.payment-box {
+            width: 420px;
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .method {
+            padding: 12px;
+            background: #f4f6ff;
+            border-radius: 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: .3s;
+        }
+
+        .method:hover {
+            background: #dce3ff;
+        }
+
+        .method img {
+            width: 35px;
+            margin-right: 10px;
+        }
+
+        #form-area {
+            margin-top: 20px;
+            display: none;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #4a6bff;
+            color: white;
+            border: none;
+            margin-top: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #3046d6;
+        }

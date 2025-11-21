@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment – CodeCraft</title>
+    <link rel="stylesheet" href="../assets/css/payment.css">
+
+</head>
+<body>
+
+<div class="payment-box">
+    <h2>Select Payment Method</h2>
+
+    <div class="method" onclick="selectMethod('card')">
+        <img src="https://cdn-icons-png.flaticon.com/512/349/349221.png">
+        Visa / MasterCard
+    </div>
+
+    <div class="method" onclick="selectMethod('bkash')">
+        <img src="https://download.logo.wine/logo/BKash/BKash-Logo.wine.png">
+        bKash
+    </div>
+
+    <div class="method" onclick="selectMethod('nagad')">
+        <img src="https://download.logo.wine/logo/Nagad/Nagad-Logo.wine.png">
+        Nagad
+    </div>
+
+  
+    <div id="form-area"></div>
+
+</div>
+
+<script src="../assets/js/payment.js"></script>
+
+</body>
+</html>
