@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraft – Student Profile</title>
+    <link rel="stylesheet" href="../assets/css/profile.css">
+</head>
+<body>
+
+<div class="profile-container">
+
+    <!-- HEADER -->
+    <header class="topbar">
+        <h2>My Profile</h2>
+        <a class="back" href="student.html">← Back to Dashboard</a>
+    </header>
+
+    <section class="profile-box">
+        <div class="profile-left">
+
+                    <img id="avatarImg" src="https://i.pravatar.cc/150" class="avatar">
+                    <input type="file" id="avatarUpload" accept="image/*" hidden>
+                    <button class="edit-btn" id="editAvatarBtn">Change Avatar</button>
+
+                <h2 id="studentName">Mahim</h2>
+                    <p class="role">Student at CodeCraft</p>
+
+                <button class="edit-btn" id="editBtn">Edit Profile</button>
+        </div>
+
+
+        <div class="profile-right">
+
+            <h3>Personal Information</h3>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Full Name</label>
+                    <p id="fullName">Mahim</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Email</label>
+                    <p id="email">mahim@example.com</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Phone</label>
+                    <p id="phone">017XXXXXXXX</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Joined</label>
+                    <p id="joined">Nov 2025</p>
+                </div>
+            </div>
+
+            <h3>Account Settings</h3>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Password</label>
+                    <p>********</p>
+                </div>
+                <div class="info-item">
+                    <button class="change-btn">Change Password</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="../assets/js/profile.js"></script>
+</body>
+</html>
