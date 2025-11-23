@@ -1,0 +1,67 @@
+body {
+            background: #eef1f7;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .certificate-box {
+            width: 900px;
+            height: 600px;
+            background: white;
+            border: 12px solid #c39b3d;
+            border-radius: 20px;
+            position: relative;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .title {
+            font-size: 40px;
+            font-weight: bold;
+            color: #c39b3d;
+        }
+
+        .subtitle {
+            margin-top: -5px;
+            color: #444;
+            font-size: 20px;
+        }
+
+        .student {
+            margin-top: 40px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .course {
+            font-size: 22px;
+            margin-top: 20px;
+        }
+
+        .date {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .btns {
+            margin-top: 25px;
+        }
+
+        button {
+            background: #c39b3d;
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            border-radius: 8px;
+            margin-right: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #9e762c;
+        }
