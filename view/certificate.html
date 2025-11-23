@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Certificate Preview – CodeCraft</title>
+    <link rel="stylesheet" href="../assets/css/certificate.css">    
+</head>
+<body>
+
+    <div class="certificate-box" id="cert">
+
+        <h1 class="title">Certificate of Completion</h1>
+        <p class="subtitle">This certificate is awarded to</p>
+
+        <h2 class="student" id="studentName"></h2>
+
+        <p class="course">
+            for successfully completing the course<br>
+            <strong id="courseName"></strong>
+        </p>
+
+        <p class="date">Issued on: <span id="issueDate"></span></p>
+        
+        <div class="btns">
+            <button onclick="downloadPDF()">Download PDF</button>
+            <button onclick="shareLink()">Copy Shareable Link</button>
+        </div>
+
+    </div>
+
+<script>
+const query = new URLSearchParams(window.location.search);
+document.getElementById("studentName").innerText = query.get("name");
+document.getElementById("courseName").innerText = query.get("course");
+document.getElementById("issueDate").innerText = query.get("date");
+
+// Download Certificate as PDF (Browser Print)
+function downloadPDF() {
+    window.print();
+}
+
+// Create shareable link
+function shareLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Shareable link copied!");
+}
+</script>
+
+</body>
+</html>
