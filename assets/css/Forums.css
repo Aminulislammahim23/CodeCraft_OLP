@@ -1,24 +1,22 @@
-/* Discussion Forums — CSS
-   Updated for CodeCraft (deep-blue → teal gradient).
-   Save as "Discussion Forums.css".
+/* Discussion Forums — CSS (professional nav integrated)
+   Save as "Discussion Forums.css"
 */
 
 /* variables */
 :root{
   --wrap: 1150px;
-  --accent-1: #0B1D2A; /* dark blue */
-  --accent-2: #083B47; /* mid teal */
-  --accent-3: #064A53; /* deep teal */
-  --green: #16a085;    /* accent green for counts */
+  --accent-1: #0B1D2A;
+  --accent-2: #083B47;
+  --accent-3: #064A53;
+  --accent-green: #16a085;
   --muted: #6b7280;
   --card: #ffffff;
-  --light: #f6f8f9;
   --border: #e6eaec;
   --radius: 10px;
-  --spacing: 14px;
   --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
+/* base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -26,43 +24,65 @@ body{
   font-family:var(--font);
   font-size:15px;
   color:#111827;
-  background: #f3f5f6;
+  background:#f3f5f6;
   -webkit-font-smoothing:antialiased;
 }
 
 /* wrapper */
 .wrap{ max-width:var(--wrap); margin:0 auto; padding:18px; }
 
-/* topbar (uses uploaded gradient colors) */
+/* TOPBAR */
 .topbar{
   background: linear-gradient(180deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
   color:white;
   padding:10px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 .topbar-inner{ display:flex; align-items:center; justify-content:space-between; gap:18px; }
-.branding{display:flex;align-items:center;gap:12px}
-.logo{ width:48px; height:48px; display:block; }
-.site-title .title-main{ font-weight:800; font-size:18px; display:block }
-.site-title .title-sub{ font-size:12px; color:rgba(255,255,255,0.85) }
 
-/* top actions */
-.top-actions { display:flex; gap:14px; align-items:center; }
-.search input[type="search"]{
-  padding:10px 12px;
-  border-radius:8px;
-  border: none;
-  width:360px;
-  max-width:40vw;
-  outline:none;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.03);
+/* Branding */
+.branding{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo{ width:48px; height:48px; display:block; border-radius:8px; }
+.site-title .site-name{ color:#e6fbfb; font-weight:800; font-size:18px; text-decoration:none; }
+.site-title .site-sub{ color:rgba(255,255,255,0.9); font-size:12px; margin-top:-2px; }
+
+/* Professional navigation layout */
+.nav-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  width:100%;
 }
-.nav-links{ display:flex; gap:10px; align-items:center; }
-.nav-link{ color:rgba(255,255,255,0.95); text-decoration:none; padding:8px 10px; font-weight:600; border-radius:8px }
-.btn-solid{ background:rgba(255,255,255,0.12); padding:8px 12px; color:#fff; }
+.nav-left, .nav-right{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.nav-left { margin-left:18px; }
+.nav-right { margin-right:6px; }
 
-/* main header */
-.main .page-head{ margin-top:18px; margin-bottom:8px; padding:12px 0; }
+.nav-bar a{ color:rgba(255,255,255,0.92); text-decoration:none; font-weight:600; padding:6px 8px; border-radius:8px; transition:all .18s ease; display:inline-flex; align-items:center; gap:8px; }
+.nav-bar a:hover{ color:#ffffff; background:rgba(255,255,255,0.03); transform:translateY(-1px); }
+
+.icon-link{ font-size:18px; padding:8px; background: rgba(255,255,255,0.02); border-radius:8px; }
+
+.btn-signin{
+  background: rgba(255,255,255,0.12);
+  padding:8px 14px;
+  border-radius:10px;
+  color:white;
+  border:1px solid rgba(255,255,255,0.12);
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(2,8,12,0.18);
+}
+.btn-signin:hover{ background: rgba(255,255,255,0.18); }
+
+/* main header & page */
+.page-head{ margin-top:18px; margin-bottom:8px; padding:8px 0; }
 .page-head h1{ margin:0; font-size:20px; }
 .page-head .muted{ color:var(--muted); margin-top:4px; font-size:13px }
 
@@ -70,18 +90,11 @@ body{
 .controls{ display:flex; justify-content:space-between; gap:12px; align-items:center; margin:14px 0 8px; }
 .controls label select{ padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:white }
 
-/* category wrapper */
-.category{
-  margin-bottom:12px;
-  border-radius:8px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:transparent;
-}
+/* categories */
+.category{ margin-bottom:12px; border-radius:8px; overflow:hidden; border:1px solid var(--border); background:transparent; }
 
-/* category header uses same deep gradient */
+/* category header uses deep gradient */
 .category-header{
-  list-style:none;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -94,7 +107,7 @@ body{
 .category-header h2{ margin:0; font-size:14px; color: #def7f6; }
 .category-header .muted{ font-size:13px; color: rgba(255,255,255,0.92); }
 
-/* forum list & rows */
+/* forum list */
 .forum-list{ padding:0; margin:0; background:white; }
 .forum-row{
   display:flex;
@@ -108,10 +121,10 @@ body{
 
 .left{ display:flex; gap:12px; align-items:center; min-width:0; }
 .icon{
-  width:40px; height:40px; border-radius:40px;
+  width:40px; height:40px; border-radius:999px;
   background: linear-gradient(180deg, rgba(22,160,133,0.08), rgba(22,160,133,0.04));
   display:flex; align-items:center; justify-content:center; font-size:18px;
-  color:var(--green);
+  color:var(--accent-green);
   flex:0 0 40px;
 }
 .meta{ min-width:0; }
@@ -123,11 +136,11 @@ body{
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   max-width:420px;
 }
-.forum-desc{ color:var(--muted); font-size:13px; margin-top:4px }
+.forum-desc{ color:var(--muted); font-size:13px; margin-top:4px; }
 
 /* right column */
 .right{ text-align:right; display:flex; gap:12px; align-items:center; justify-content:flex-end; min-width:170px; }
-.posts{ font-weight:800; color:var(--green); font-size:14px; }
+.posts{ font-weight:800; color:var(--accent-green); font-size:14px; }
 .last{ display:flex; gap:8px; align-items:center; margin-left:8px; }
 .avatar{ width:36px; height:36px; border-radius:999px; object-fit:cover; border:2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
 .last-meta .small{ font-weight:700; color:#374151; }
@@ -136,24 +149,29 @@ body{
 /* pagination */
 .pagination{ display:flex; gap:8px; justify-content:center; margin:20px 0; }
 .page{ border:1px solid var(--border); background:white; padding:8px 12px; border-radius:8px; cursor:pointer; }
-.page.active{ background:var(--green); color:white; border-color:var(--green); }
+.page.active{ background:var(--accent-green); color:white; border-color:var(--accent-green); }
 
 /* footer */
 .site-footer{ margin-top:36px; padding:18px 0; background:transparent; color:var(--muted) }
 .footer-inner{ display:flex; justify-content:space-between; align-items:center; gap:12px }
 
 /* responsive */
+@media (max-width:1100px){
+  .nav-left{ gap:16px; }
+  .nav-right{ gap:12px; }
+}
 @media (max-width:900px){
-  .top-actions{ flex-direction:column; align-items:stretch; gap:10px; }
-  .search input{ width:100%; max-width:100%; }
-  .wrap{ padding:12px; }
-  .right{ min-width:120px; text-align:left; }
+  .topbar-inner{ flex-direction:column; align-items:flex-start; gap:12px; }
+  .nav-bar{ width:100%; }
+  .nav-left{ order:1; }
+  .nav-right{ order:2; margin-top:6px; }
+  .search input{ width:100%; }
   .forum-row{ flex-direction:column; align-items:flex-start; gap:10px; }
 }
 
 /* very small */
 @media (max-width:420px){
-  .site-title .title-main{ font-size:16px; }
-  .site-title .title-sub{ display:none; }
+  .site-title .site-name{ font-size:16px; }
+  .site-title .site-sub{ display:none; }
   .forum-title{ max-width:260px; }
 }
