@@ -1,0 +1,284 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Course Ratings — CodeCraft</title>
+  <link rel="stylesheet" href="..//assets/css/ratting.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-topbar" role="banner" aria-label="Site header">
+    <div class="topbar-inner">
+      <div class="branding">
+        <a class="brand-tile" href="#" aria-label="CodeCraft home">
+          <span class="brand-initials">CC</span>
+        </a>
+        <div class="brand-text">
+          <a class="brand-name" href="#">CodeCraft</a>
+          <div class="brand-sub">E-Learning</div>
+        </div>
+      </div>
+
+      <nav class="site-nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-left">
+          <a class="nav-link" href="#">Courses</a>
+          <a class="nav-link active" href="#">Forums</a>
+          <a class="nav-link" href="#">Resources</a>
+        </div>
+
+        <div class="nav-right">
+  
+          <li><a href="#" class="btn-signin">Sign In</a></li> 
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="wrap" id="main">
+    <section class="hero-compact">
+      <div class="hero-left">
+        <h1>Course Ratings</h1>
+        <p class="muted">Find top-rated courses, read reviews, and rate courses you've taken.</p>
+
+        <div class="filters">
+          <input id="search" type="search" placeholder="Search courses, instructors..." aria-label="Search courses">
+         <label class="custom-select-wrap" aria-label="Sort courses">
+  <select id="sortSelect" class="custom-select">
+    <option value="featured">Featured</option>
+    <option value="highest">Highest Rated</option>
+    <option value="lowest">Lowest Rated</option>
+    <option value="most-reviewed">Most Reviewed</option>
+  </select>
+</label>
+ 
+      </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="summary-card" aria-hidden="true">
+          <div class="avg" id="overallAvg">—</div>
+          <div class="stars" id="overallStars">★★★★★</div>
+          <div class="small muted">Average across <strong id="totalReviews">0</strong> reviews</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <ul id="courses" class="course-grid" aria-live="polite"></ul>
+    </section>
+
+    <nav class="pagination" aria-label="Pagination">
+      <button id="prevPage" class="page">‹ Prev</button>
+      <div id="pageInfo" class="page-info">Page <span id="pageNum">1</span> of <span id="pageCount">1</span></div>
+      <button id="nextPage" class="page">Next ›</button>
+    </nav>
+  </main>
+
+  <!-- REVIEW MODAL -->
+  <div id="reviewModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel" role="document">
+      <button class="modal-close" id="closeModal" aria-label="Close review form">✕</button>
+      <h3 id="modalCourseTitle">Rate Course</h3>
+
+      <form id="reviewForm">
+        <label class="label">Your rating</label>
+        <div class="star-input" id="starInput" aria-label="Star rating" role="radiogroup"></div>
+
+        <label class="label" for="reviewText">Review (optional)</label>
+        <textarea id="reviewText" rows="4" placeholder="Share what you liked or what could improve..."></textarea>
+
+        <div class="form-row" style="margin-top:12px; display:flex; gap:10px;">
+          <button type="submit" class="btn-primary">Submit Review</button>
+          <button type="button" class="btn-outline" id="cancelModal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2025 CodeCraft — Learn & Build</div>
+      <div class="muted">Contact • Privacy • Terms</div>
+    </div>
+  </footer>
+
+  <script>
+  // ---------- Sample data (replace with server data as needed) ----------
+  const sampleCourses = [
+    { id:1, title:"Modern HTML & CSS", instructor:"A. Rahman", desc:"Responsive HTML5 & modern CSS techniques.", avg:4.7, reviews:34 },
+    { id:2, title:"JavaScript: From Zero to Hero", instructor:"M. Smith", desc:"Practical JS + DOM + APIs.", avg:4.6, reviews:52 },
+    { id:3, title:"PHP for Beginners", instructor:"L. Gomez", desc:"Server-side fundamentals with projects.", avg:4.1, reviews:12 },
+    { id:4, title:"SQL & Databases", instructor:"S. Khan", desc:"Design, queries, optimization & practice.", avg:4.3, reviews:8 },
+    { id:5, title:"React for E-Learning", instructor:"D. Lee", desc:"Component-driven UIs & hooks.", avg:4.5, reviews:20 },
+    { id:6, title:"Accessibility Fundamentals", instructor:"R. Patel", desc:"Make accessible learning content.", avg:4.9, reviews:2 },
+    { id:7, title:"Advanced CSS Animations", instructor:"Y. Park", desc:"Motion design & performance tips.", avg:3.9, reviews:10 },
+    { id:8, title:"Testing & QA for Web", instructor:"T. Brown", desc:"Unit & E2E testing strategies.", avg:4.2, reviews:6 },
+    { id:9, title:"Node.js APIs", instructor:"S. Kumar", desc:"Build and secure REST APIs.", avg:4.0, reviews:9 },
+    { id:10, title:"Docker Basics", instructor:"V. Rossi", desc:"Containerize your apps.", avg:4.4, reviews:5 },
+    { id:11, title:"Data Structures in JS", instructor:"N. Wang", desc:"Algorithms & data structures.", avg:4.6, reviews:10 },
+    { id:12, title:"UX for Developers", instructor:"C. Ortiz", desc:"Design patterns for learning UI.", avg:4.8, reviews:7 }
+  ];
+
+  let courses = [...sampleCourses];
+  const perPage = 6;
+  let currentPage = 1;
+
+  // ---------- Helpers ----------
+  function calcPageCount(){ return Math.max(1, Math.ceil(courses.length / perPage)); }
+  function updatePageInfo(){
+    document.getElementById('pageNum').textContent = currentPage;
+    document.getElementById('pageCount').textContent = calcPageCount();
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage === calcPageCount();
+  }
+
+  // ---------- Render ----------
+  function renderStars(avg){
+    const rounded = Math.round(avg * 2) / 2;
+    let out = '';
+    for(let i=1;i<=5;i++){
+      if(rounded >= i) out += '★';
+      else if(rounded + 0.5 === i) out += '☆';
+      else out += '☆';
+    }
+    return out;
+  }
+
+  function renderCourses(){
+    const list = document.getElementById('courses');
+    list.innerHTML = '';
+    const start = (currentPage - 1) * perPage;
+    const slice = courses.slice(start, start + perPage);
+    slice.forEach(c => {
+      const li = document.createElement('li');
+      li.className = 'course-card';
+      li.innerHTML = `
+        <div class="card-left">
+          <div class="course-title"><a href="#">${escapeHTML(c.title)}</a></div>
+          <div class="instructor">${escapeHTML(c.instructor)}</div>
+          <div class="course-desc">${escapeHTML(c.desc)}</div>
+        </div>
+        <div class="card-right">
+          <div class="avg">${c.avg.toFixed(1)}</div>
+          <div class="stars" aria-hidden="true">${renderStars(c.avg)}</div>
+          <div class="reviews">${c.reviews} review${c.reviews !== 1 ? 's' : ''}</div>
+          <button class="btn-outline rate-btn" data-id="${c.id}">Rate this course</button>
+        </div>
+      `;
+      list.appendChild(li);
+    });
+
+    // attach rate handlers
+    document.querySelectorAll('.rate-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=> openReviewModal(Number(btn.dataset.id)));
+    });
+
+    // update totals
+    const totalReviews = courses.reduce((s,c)=>s + (c.reviews||0), 0);
+    document.getElementById('totalReviews').textContent = totalReviews;
+    const weightedSum = courses.reduce((s,c)=>s + (c.avg * (c.reviews||1)), 0);
+    const overallAvg = totalReviews ? (weightedSum / totalReviews) : (courses.reduce((s,c)=>s + c.avg,0)/courses.length);
+    document.getElementById('overallAvg').textContent = overallAvg ? overallAvg.toFixed(1) : '—';
+    document.getElementById('overallStars').textContent = renderStars(overallAvg || 0);
+  }
+
+  // ---------- Filters & sort ----------
+  document.getElementById('search').addEventListener('input', ()=> applyFilters());
+  document.getElementById('sortSelect').addEventListener('change', ()=> applyFilters());
+
+  function applyFilters(){
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const sort = document.getElementById('sortSelect').value;
+    courses = sampleCourses.filter(c => {
+      return c.title.toLowerCase().includes(q) || c.instructor.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q);
+    });
+    if(sort === 'highest') courses.sort((a,b)=> b.avg - a.avg);
+    else if(sort === 'lowest') courses.sort((a,b)=> a.avg - b.avg);
+    else if(sort === 'most-reviewed') courses.sort((a,b)=> b.reviews - a.reviews);
+    currentPage = 1;
+    updatePageInfo();
+    renderCourses();
+  }
+
+  // ---------- Pagination ----------
+  document.getElementById('prevPage').addEventListener('click', ()=> {
+    if(currentPage > 1){ currentPage--; updatePageInfo(); renderCourses(); }
+  });
+  document.getElementById('nextPage').addEventListener('click', ()=> {
+    if(currentPage < calcPageCount()){ currentPage++; updatePageInfo(); renderCourses(); }
+  });
+
+  // ---------- Modal & star input ----------
+  const modal = document.getElementById('reviewModal');
+  const closeModal = document.getElementById('closeModal');
+  const cancelModal = document.getElementById('cancelModal');
+  let activeCourseId = null;
+  let selectedStars = 0;
+
+  function openReviewModal(courseId){
+    const course = sampleCourses.find(c=>c.id===courseId);
+    if(!course) return;
+    activeCourseId = courseId;
+    document.getElementById('modalCourseTitle').textContent = 'Rate — ' + course.title;
+    selectedStars = 0;
+    buildStarInput();
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden','false');
+    document.getElementById('reviewText').value = '';
+    document.getElementById('reviewText').focus();
+  }
+  function closeReviewModal(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); activeCourseId = null; selectedStars = 0; }
+
+  closeModal.addEventListener('click', closeReviewModal);
+  cancelModal.addEventListener('click', closeReviewModal);
+  modal.addEventListener('click', e=> { if(e.target === modal) closeReviewModal(); });
+
+  function buildStarInput(){
+    const wrap = document.getElementById('starInput');
+    wrap.innerHTML = '';
+    for(let i=1;i<=5;i++){
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'star';
+      btn.dataset.value = i;
+      btn.innerHTML = '☆';
+      btn.title = i + ' star' + (i>1?'s':'');
+      btn.addEventListener('click', ()=> { selectedStars = i; updateStarVisual(); });
+      wrap.appendChild(btn);
+    }
+    updateStarVisual();
+  }
+  function updateStarVisual(){
+    document.querySelectorAll('#starInput .star').forEach(s=>{
+      const v = Number(s.dataset.value);
+      s.innerHTML = (v <= selectedStars) ? '★' : '☆';
+      s.classList.toggle('active', v <= selectedStars);
+    });
+  }
+
+  document.getElementById('reviewForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!selectedStars){ alert('Please select a star rating.'); return; }
+    const text = document.getElementById('reviewText').value.trim();
+    const course = sampleCourses.find(c=>c.id === activeCourseId);
+    if(course){
+      course.avg = ((course.avg * course.reviews) + selectedStars) / (course.reviews + 1);
+      course.reviews = (course.reviews || 0) + 1;
+      // In production: POST to server then refresh from API
+    }
+    applyFilters();
+    closeReviewModal();
+    setTimeout(()=> alert('Thanks for your review!'), 120);
+  });
+
+  function escapeHTML(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+  // init
+  updatePageInfo();
+  renderCourses();
+  </script>
+</body>
+</html>
