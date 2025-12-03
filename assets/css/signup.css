@@ -6,8 +6,9 @@
 }
 
 body {
-    background: #f8f8f8;
+    background: #f0f4f8;
 }
+
 
 .signup-container {
     display: flex;
@@ -17,7 +18,7 @@ body {
 
 .left-panel {
     width: 45%;
-    background: linear-gradient(135deg,#0f172a,#0ea5a4);
+    background: linear-gradient(135deg, #0f172a, #0ea5a4);
     color: #fff;
     padding: 60px;
     display: flex;
@@ -25,32 +26,48 @@ body {
     justify-content: center;
 }
 
+
 .brand {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
+
+.brand-logo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.brand-name {
+    font-size: 60px;
+}
+
 
 h1 {
     font-size: 38px;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    margin: 10px 0 30px 0;
-    opacity: 0.9;
+    opacity: 0.85;
+    margin-bottom: 30px;
 }
+
 
 .signup-form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 
 .signup-form label {
     font-size: 14px;
+    margin-bottom: -6px;
 }
 
 .signup-form input {
@@ -58,7 +75,15 @@ h1 {
     border-radius: 6px;
     border: none;
     outline: none;
+    background: rgba(255,255,255,0.85);
+    transition: 0.3s;
 }
+
+.signup-form input:focus {
+    background: #fff;
+    box-shadow: 0 0 6px rgba(255,255,255,0.7);
+}
+
 
 .btn {
     padding: 12px;
@@ -68,10 +93,17 @@ h1 {
     margin-top: 10px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+    color: black;
 }
 
+.btn:hover {
+    background: #b2e681;
+}
+
+
 .links {
-    margin-top: 15px;
+    margin-top: 18px;
     display: flex;
     justify-content: space-between;
 }
@@ -82,32 +114,40 @@ h1 {
     font-size: 14px;
 }
 
+.links .btn {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.2);
+}
+
 
 .right-panel {
     width: 55%;
-    background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2") no-repeat center center / cover;
+    background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2")
+        no-repeat center center / cover;
     position: relative;
 }
+
 
 .overlay-text {
     position: absolute;
     bottom: 60px;
     left: 60px;
     background: rgba(0,0,0,0.55);
-    padding: 20px 30px;
+    padding: 22px 32px;
     border-radius: 10px;
     color: #fff;
 }
 
 .overlay-text h2 {
-    font-size: 26px;
+    font-size: 28px;
+    font-weight: 600;
 }
 
 .overlay-text p {
     margin-top: 8px;
     font-size: 15px;
+    opacity: 0.9;
 }
-
 
 @media (max-width: 900px) {
     .signup-container {
@@ -115,7 +155,8 @@ h1 {
         height: auto;
     }
 
-    .left-panel, .right-panel {
+    .left-panel,
+    .right-panel {
         width: 100%;
         height: 55vh;
     }

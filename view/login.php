@@ -1,3 +1,17 @@
+<?php
+    if(isset($_GET['error'])){
+        $error = $_GET['error'];
+        if($error == "invalid_user"){
+            $err1 = "please type valid username/password!";
+            echo $err1;
+        } elseif($error == "badrequest"){
+            $err2 = "Please Login First!";
+            echo $err2;
+        }   
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +26,7 @@
 
     <div class="left-panel">
         <div class="brand">
-            <span class="icon">💻</span> CodeCraft
+            <img src="../assets/img/logo.png" alt="CodeCraft Logo" class="brand-logo">
         </div>
 
         <h1 id="demo" >Welcome Back</h1>
