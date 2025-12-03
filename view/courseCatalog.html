@@ -1,162 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Course Catalog - CodeCraft</title>
-<link rel="stylesheet" href="../assets/css/courseCatalog.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Course Catalog - CodeCraft</title>
+  <link rel="stylesheet" href="../assets/css/courseCatalog.css" />
 </head>
 <body>
-<header>
-<div class="logo">CodeCraft</div>
-<nav>
-<ul>
-<li><a href="../index.html">Home</a></li>
-<li><a href="../pages/courseCatalog.html">Courses</a></li>
-<li><a href="../pages/forum.html" class="active">Forum</a></li>
-<li><a href="../pages/progress.html">Progress</a></li>
-<li><a href="../pages/login.html">Account</a></li>
-</ul>
-</nav>
- 
-        <div class="notification-container">
-<div class="bell" id="bell">
+  <header class="site-header">
+    <div class="brand">
+      <a href="../index.html" class="logo" aria-label="CodeCraft home">CodeCraft</a>
+    </div>
 
-            🔔
-<span id="unreadCount" class="count">3</span>
-</div>
-<div class="dropdown" id="dropdown">
-<h3>Notifications</h3>
-<ul id="notificationList">
-<!-- JS will load notifications here -->
-</ul>
-<button id="markAllRead">Mark all as read</button>
-<!-- Notification settings inside same dropdown -->
-<div class="settings-section">
-<h4>Notification Settings</h4>
-<label>
-<input type="checkbox" id="emailToggle" checked>
+    <nav aria-label="Primary navigation">
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courseCatalog.html" class="active">Courses</a></li>
+        <li><a href="../pages/forum.html">Forum</a></li>
+        <li><a href="../pages/progress.html">Progress</a></li>
+        <li><a href="../pages/login.html">Account</a></li>
+      </ul>
+    </nav>
 
-                Email Notifications
-</label><br>
-<label>
-<input type="checkbox" id="pushToggle" checked>
+    <div class="notification-container" id="notificationRoot">
+      <button id="bell" class="bell" aria-haspopup="true" aria-expanded="false" aria-controls="notificationsPanel" title="Open notifications">
+        🔔 <span id="unreadCount" class="count" aria-live="polite">0</span>
+      </button>
 
-                Push Notifications
-</label>
-</div>
-</div>
-</div>
-</header>
- 
- 
+      <div id="notificationsPanel" class="dropdown" role="dialog" aria-labelledby="notificationsTitle" aria-hidden="true" hidden>
+        <h3 id="notificationsTitle">Notifications</h3>
+        <ul id="notificationList" class="notifications-list" aria-live="polite"></ul>
+
+        <div class="dropdown-actions">
+          <button id="markAllRead" type="button">Mark all as read</button>
+        </div>
+
+        <div class="settings-section" aria-label="Notification settings">
+          <h4>Notification Settings</h4>
+          <label><input type="checkbox" id="emailToggle" /> Email Notifications</label><br/>
+          <label><input type="checkbox" id="pushToggle" /> Push Notifications</label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page-main">
+    <section class="hero" aria-labelledby="heroTitle">
+      <h1 id="heroTitle">Explore Our Courses</h1>
+      <p>Upgrade your skills with our expert-taught courses</p>
+    </section>
+
+    <section class="controls">
+      <form id="searchForm" class="search-container" role="search" autocomplete="off">
+        <label for="searchInput" class="sr-only">Search courses</label>
+        <input id="searchInput" name="searchInput" type="search" placeholder="Search by course name..." />
+        <button id="searchBtn" type="submit">Search</button>
+      </form>
+
+      <div class="filters">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="All">All</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Programming">Programming</option>
+        </select>
+
+        <label for="level">Difficulty</label>
+        <select id="level" name="level">
+          <option value="All">All</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+
+        <label for="duration">Duration</label>
+        <select id="duration" name="duration">
+          <option value="All">All</option>
+          <option value="Short">Short (0-5 hrs)</option>
+          <option value="Medium">Medium (5-15 hrs)</option>
+          <option value="Long">Long (15+ hrs)</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="container">
+      <section class="courses" id="course-list" aria-live="polite" aria-label="Available courses">
+        <!-- Learn HTML -->
+        <article class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Short" data-title="Learn HTML">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML5 logo" />
+          <div class="course-info">
+            <h4>Learn HTML</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐☆</span><span class="sr-only">4 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="html">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Master CSS -->
+        <article class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Medium" data-title="Master CSS">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS3 logo" />
+          <div class="course-info">
+            <h4>Master CSS</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐⭐</span><span class="sr-only">5 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="css">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- JavaScript Essentials -->
+        <article class="course-card" data-category="Frontend" data-level="Intermediate" data-duration="Medium" data-title="JavaScript Essentials">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript logo" />
+          <div class="course-info">
+            <h4>JavaScript Essentials</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐⭐</span><span class="sr-only">5 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="javascript">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- C++ Programming -->
+        <article class="course-card" data-category="Programming" data-level="Intermediate" data-duration="Long" data-title="C++ Programming">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ logo" />
+          <div class="course-info">
+            <h4>C++ Programming</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p>Duration: 15 hrs | Intermediate</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐⭐</span><span class="sr-only">5 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="cpp">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Backend - Beginner -->
+        <article class="course-card" data-category="Backend" data-level="Beginner" data-duration="Short" data-title="Intro to Node.js">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js logo" />
+          <div class="course-info">
+            <h4>Intro to Node.js</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐☆</span><span class="sr-only">4 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="nodejs">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Backend - Advanced -->
+        <article class="course-card" data-category="Backend" data-level="Advanced" data-duration="Long" data-title="Advanced API Design">
+          <img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/REST_API_logo.svg" alt="API icon" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/87/Placeholder.png'"/>
+          <div class="course-info">
+            <h4>Advanced API Design</h4>
+            <p class="instructor">Instructor: Mahim</p>
+            <p>Duration: 20 hrs | Advanced</p>
+            <p class="meta"><span class="rating" aria-hidden="true">⭐⭐⭐⭐⭐</span><span class="sr-only">5 out of 5 stars</span></p>
+            <div class="course-actions">
+              <button class="details-btn" type="button" data-course="api-design">View Details</button>
+              <button class="preview-btn" type="button" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </section>
+  </main>
+
+  <!-- Accessible Modal (hidden by default) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" hidden>
+    <div class="modal-content" role="document" aria-labelledby="modalTitle">
+      <button id="close-btn" class="close-btn" aria-label="Close dialog">&times;</button>
+      <div id="modal-body" tabindex="0"></div>
+    </div>
   </div>
-<section class="hero">
-<h1> Explore Our Courses</h1>
-<p>Upgrade your skills with our expert-taught courses</p>
-</section>
-<div class="search-container">
-<input type="text" id="searchInput" name="searchInput" placeholder="Search by course name...">
-<button onclick="searchCertificate()">Search</button>
-</div>
- 
-  <div class="container">
-<!-- Filters Section -->
-<aside class="filters">
-<h3>Filter Courses</h3>
-<label for="category">Category</label>
-<select id="category">
-<option>All</option>
-<option>Frontend</option>
-<option>Backend</option>
-<option>Programming</option>
-</select>
- 
-      <label for="level">Difficulty</label>
-<select id="level">
-<option>All</option>
-<option>Beginner</option>
-<option>Intermediate</option>
-<option>Advanced</option>
-</select>
- 
-      <label for="duration">Duration</label>
-<select id="duration">
-<option>All</option>
-<option>Short (0-5 hrs)</option>
-<option>Medium (5-15 hrs)</option>
-<option>Long (15+ hrs)</option>
-</select>
-</aside>
- 
-    <!-- Course Gallery -->
-<main class="courses" id="course-list">
-<!-- HTML Course -->
-<div class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Short">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML Course">
-<div class="course-info">
-<h4>Learn HTML</h4>
-<p>Instructor: Mahim</p>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<button class="details-btn" data-course="html">View Details</button>
-<button class="preview-btn" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
-</div>
-</div>
- 
-      <!-- CSS Course -->
-<div class="course-card" data-category="Frontend" data-level="Beginner" data-duration="Medium">
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS Course">
-<div class="course-info">
-<h4>Master CSS</h4>
-<p>Instructor: Mahim</p>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<button class="details-btn" data-course="css">View Details</button>
-<button class="preview-btn" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
-</div>
-</div>
- 
-      <!-- JavaScript Course -->
-<div class="course-card" data-category="Frontend" data-level="Intermediate" data-duration="Medium">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Course">
-<div class="course-info">
-<h4>JavaScript Essentials</h4>
-<p>Instructor: Mahim</p>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<button class="details-btn" data-course="javascript">View Details</button>
-<button class="preview-btn" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
-</div>
-</div>
- 
-      <!-- C++ Course -->
-<div class="course-card" data-category="Programming" data-level="Intermediate" data-duration="Long">
-<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Course">
-<div class="course-info">
-<h4>C++ Programming</h4>
-<p>Instructor: Mahim</p>
-<p>Duration: 15 hrs | Intermediate</p>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<button class="details-btn" data-course="cpp">View Details</button>
-<button class="preview-btn" data-video="https://www.w3schools.com/html/mov_bbb.mp4">Preview</button>
-</div>
-</div>
-</main>
-</div>
- 
-  <!-- Modal -->
-<div class="modal" id="modal">
-<div class="modal-content" id="modal-content">
-<span class="close-btn" id="close-btn">&times;</span>
-<div id="modal-body"></div>
-</div>
-</div>
- 
-  <footer>
-<p>&copy; 2025 CodeCraft. All rights reserved.</p>
-</footer>
- 
-  <script src="../assets/js/courseCatalog.js"></script>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 CodeCraft. All rights reserved.</p>
+  </footer>
+
+  <script src="../assets/js/courseCatalog.js" defer></script>
 </body>
- 
- 
 </html>
- 
