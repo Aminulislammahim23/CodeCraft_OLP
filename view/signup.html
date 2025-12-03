@@ -12,25 +12,28 @@
 
     <div class="left-panel">
         <div class="brand">
-            <span class="icon">💻</span> CodeCraft
+            <img src="../assets/img/logo.png" alt="CodeCraft Logo" class="brand-logo">
         </div>
-
+        <div>
+            <span class="brand-name">CodeCraft</span>
+        </div>
+        
         <h1>Create Your Account</h1>
         <p class="subtitle">Start learning and track your coding journey.</p>
 
-        <form class="signup-form">
+        <form class="signup-form" id="signupForm" method="post" action="signup_process.php">
 
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter your full name" required>
+            <label for="fname">Full Name</label>
+            <input type="text" id="fname" name="fname" required>
 
-            <label>Email</label>
-            <input type="email" placeholder="Enter your email" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
 
-            <label>Password</label>
-            <input type="password" placeholder="Create a password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
 
-            <label>Confirm Password</label>
-            <input type="password" placeholder="Re-type password" required>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
 
             <button type="submit" class="btn">Sign Up</button>
 
@@ -51,5 +54,6 @@
 
 </div>
 
+<script src="../assets/js/signup.js"></script>
 </body>
 </html>
