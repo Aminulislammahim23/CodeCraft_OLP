@@ -1,0 +1,149 @@
+/* Global */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter, sans-serif;
+}
+
+/* Page background */
+body{
+  background:#f6f9fb;
+  color:#152736;
+  padding-bottom:80px;
+}
+
+/* ===== HERO SECTION ===== */
+.faq-hero{
+  text-align:center;
+  padding:50px 20px;
+  background:linear-gradient(135deg,#0A2330,#083944 70%);
+  color:#fff;
+}
+.faq-hero h1{
+  font-size:36px;
+  font-weight:800;
+}
+.faq-hero p{
+  margin-top:10px;
+  opacity:0.9;
+  font-size:16px;
+}
+
+/* ===== FAQ SECTION ===== */
+.faq-container{
+  max-width:900px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.faq-item{
+  background:#fff;
+  margin-bottom:16px;
+  border-radius:12px;
+  border:1px solid #e0e6ea;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  overflow:hidden;
+}
+
+/* FAQ Question */
+.faq-question{
+  width:100%;
+  background:#fff;
+  border:none;
+  text-align:left;
+  padding:18px 20px;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+  position:relative;
+}
+
+.faq-question:hover{
+  background:#f2f7f9;
+}
+
+/* Arrow icon */
+.faq-question::after{
+  content:"▼";
+  position:absolute;
+  right:20px;
+  font-size:14px;
+  transition:0.3s;
+}
+
+/* Active state */
+.faq-item.active .faq-question{
+  background:#e8f8f5;
+  color:#0A574A;
+}
+
+.faq-item.active .faq-question::after{
+  transform:rotate(180deg);
+}
+
+/* FAQ Answer */
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  background:#fff;
+  padding:0 20px;
+  transition:max-height .35s ease;
+}
+
+.faq-item.active .faq-answer{
+  max-height:200px;
+  padding:20px;
+}
+
+/* ===== PAGINATION ===== */
+.pagination{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:40px;
+}
+
+.page-btn,
+.page-number{
+  padding:10px 16px;
+  border-radius:8px;
+  border:1px solid #d0dde9;
+  background:#fff;
+  color:#0a2230;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.2s;
+}
+
+.page-number:hover,
+.page-btn:hover{
+  background:#e9f4ff;
+}
+
+.page-number.active{
+  background:#0E728A;
+  color:#fff;
+  border-color:#0E728A;
+}
+
+.page-btn.disabled{
+  opacity:0.4;
+  pointer-events:none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:600px){
+  .faq-hero h1{
+    font-size:28px;
+  }
+  .faq-question{
+    font-size:16px;
+    padding:16px;
+  }
+  .page-btn,
+  .page-number{
+    padding:8px 12px;
+  }
+}
