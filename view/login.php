@@ -1,14 +1,14 @@
 <?php
-    if(isset($_GET['error'])){
-        $error = $_GET['error'];
-        if($error == "invalid_user"){
-            $err1 = "please type valid username/password!";
-            echo $err1;
-        } elseif($error == "badrequest"){
-            $err2 = "Please Login First!";
-            echo $err2;
-        }   
+if(isset($_GET['error'])){
+    $error = $_GET['error'];
+    if($error == "invalid_user"){
+        $err1 = "please type valid username/password!";
+        echo $err1;
+    }elseif($error == 'badrequest'){
+        $err2 = "please login first";
+        echo $err2;
     }
+}
 ?>
 
 
@@ -32,15 +32,15 @@
         <h1 id="demo" >Welcome Back</h1>
         <p class="subtitle">Login to continue learning and tracking your progress.</p>
 
-        <form class="login-form">
+        <form class="login-form" action="../controller/loginCheck.php" method="POST">
 
             <label>Email</label>
-            <input type="email" id="email" class="email">
+            <input type="email" id="email" class="email" name="email">
 
             <label>Password</label>
-            <input type="password" id="password" class="password">
+            <input type="password" id="password" class="password" name="password">
 
-            <button type="submit" class="btn" id="loginBtn">Login</button>
+            <input type="submit" class="btn" id="loginBtn" name="submit" value="Login"/><br><br>
 
             <div class="links">
                 <a href="forget_password.html">Forgot Password?</a>
@@ -59,7 +59,7 @@
 
 </div>
 
-<script src="../assets/js/loginVal.js"></script>
+<!-- <script src="../assets/js/loginVal.js"></script> -->
 
 </body>
 </html>
