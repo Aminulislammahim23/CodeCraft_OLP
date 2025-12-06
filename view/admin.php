@@ -1,3 +1,34 @@
+<?php
+    session_start();
+    if(!isset($_COOKIE['status'])){
+        header('location: login.php?error=badrequest');
+    }
+   
+    require_once('../controller/auth.php');
+    checkRole(['admin']);   // only admin can access
+
+    require_once('../model/userModel.php');
+    $users = getAllUser();
+    $instructors = getAllInstructors();
+    $students = getAllStudents();
+
+    $id = $_SESSION['user_id'];
+    $userbyID = getUserById($id);
+
+    $avatarPath = !empty($userbyID['avatar']) ? $userbyID['avatar'] : "assets/uploads/imgP/default.jpg";
+
+    // require_once('../model/courseModel.php');  // course model
+    // $courses = getAllCourses();
+
+    // require_once('../model/AdminDashModel.php');
+//     $dashboard = [
+//     'totalCourses'      => getTotalCourses(),
+//     'totalStudents'     => getTotalStudents(),
+//     'totalInstructors'  => getTotalInstructors(),
+//     'certificatesIssued'=> getCertificatesIssued()
+// ];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
