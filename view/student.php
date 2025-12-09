@@ -1,3 +1,15 @@
+<?php
+session_start();
+    if(!isset($_COOKIE['status'])){
+        header('location: login.php?error=badrequest');
+    }
+   
+    require_once('../controller/auth.php');
+    checkRole(['student']);   // only student can access
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +30,7 @@
             <li><a href="#">Progress</a></li>
             <li><a href="#">Certificates</a></li>
             <li><a href="../view/profile.html">Profile</a></li>
-            <li><a href="../view/login.html" class="logout">Logout</a></li>
+            <li><a href="../view/login.php" class="logout">Logout</a></li>
         </ul>
     </aside>
 
