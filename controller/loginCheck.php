@@ -14,11 +14,10 @@ if ($email == "" || $password == "") {
     if ($dbUser) {
         setcookie('status', true, time() + 3000, '/');
 
-        // Save user info in session
         $_SESSION['user_id']   = $dbUser['id'];
         $_SESSION['username']  = $dbUser['username'];
         $_SESSION['role']      = $dbUser['role'];
-        // $_SESSION['avatar']    = $dbUser['avatar'];
+        $_SESSION['avatar']    = $dbUser['avatar'];
 
         
         if ($dbUser['role'] === 'admin') {

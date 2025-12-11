@@ -1,9 +1,6 @@
 <?php
 session_start();
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,32 +17,55 @@ session_start();
         <div class="brand">
             <img src="../assets/img/logo.png" alt="CodeCraft Logo" class="brand-logo">
         </div>
-        <div>
-            <span class="brand-name">CodeCraft</span>
-        </div>
-        
+
+        <span class="brand-name">CodeCraft</span>
         <h1>Create Your Account</h1>
         <p class="subtitle">Start learning and track your coding journey.</p>
 
         <form class="signup-form" id="signupForm" method="post" action="signup_process.php">
 
-            <label for="fname">Full Name</label>
-            <input type="text" id="fname" name="fname" required>
+            <label>Full Name</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <p class="error" id="nameError"></p>
 
-            <label for="email">Email</label>
+            <label>Email</label>
             <input type="email" id="email" name="email" required>
+            <p class="error" id="emailError"></p>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <label>Username</label>
+            <input type="text" id="username" name="username" required>
+            <p class="error" id="userError"></p>
 
-            <label for="confirmPassword">Confirm Password</label>
+            <label>Password</label>
+            <input type="password" id="password" name="password" minlength="8" required>
+            <p class="error" id="passError"></p>
+
+            <label>Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <p class="error" id="confirmError"></p>
+
+            <label>Contact Number</label>
+            <input type="text" id="contact" name="contact" required>
+            <p class="error" id="contactError"></p>
+
+            <label>Address</label>
+            <textarea id="address" name="address" required></textarea>
+            <p class="error" id="addressError"></p>
+
+            <div class="captcha-box">
+                Google reCAPTCHA Placeholder
+            </div>
+
+            <label>
+                <input type="checkbox" id="terms" name="terms"> I agree to Terms & Conditions
+            </label>
+            <p class="error" id="termsError"></p>
 
             <button type="submit" class="btn">Sign Up</button>
 
             <div class="links">
-                <a href="login.html">Already have an account?</a>
-                <a href="login.html" class="btn">Login</a>
+                <a href="login.php">Already have an account?</a>
+                <a href="login.php" class="btn">Login</a>
             </div>
 
         </form>
