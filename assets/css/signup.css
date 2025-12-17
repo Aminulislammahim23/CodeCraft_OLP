@@ -1,3 +1,6 @@
+/* ---------------------------
+   GLOBAL RESET
+--------------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -5,13 +8,25 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    background: #f0f4f8;
+html, body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
 }
 
+body {
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------
+   MAIN CONTAINER
+--------------------------- */
 .signup-container {
     display: flex;
-    height: 100vh;
+    flex: 1;
+    min-height: 100vh;
 }
 
 /* ---------------------------
@@ -24,56 +39,55 @@ body {
     padding: 60px 70px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 /* Branding */
 .brand {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 35px;
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-bottom: 20px;
 }
 
 .brand-logo {
     width: 40px;
     height: 40px;
-    object-fit: contain;
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 .brand-name {
-    font-size: 55px;
+    font-size: 52px;
     font-weight: 700;
+    margin-bottom: 15px;
 }
 
 /* Headings */
 h1 {
-    font-size: 36px;
+    font-size: 34px;
     margin-bottom: 8px;
 }
 
 .subtitle {
-    opacity: 0.85;
-    margin-bottom: 30px;
     font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 25px;
 }
 
 /* ---------------------------
-   FORM STYLING
+   FORM
 --------------------------- */
 .signup-form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .signup-form label {
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: -4px;
 }
 
 .signup-form input,
@@ -82,62 +96,42 @@ h1 {
     border-radius: 6px;
     border: none;
     outline: none;
-    background: rgba(255, 255, 255, 0.9);
     font-size: 14px;
-    transition: 0.3s;
-}
-
-.signup-form textarea {
-    min-height: 80px;
-    resize: none;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .signup-form input:focus,
 .signup-form textarea:focus {
     background: #fff;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
 }
 
-/* Error Messages */
 .error {
     font-size: 12px;
-    color: #ffb4b4;
-    margin-top: -10px;
-    margin-bottom: -6px;
+    color: #ffd1d1;
+    margin-top: -8px;
 }
 
-/* Captcha box placeholder */
-.captcha-box {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 14px;
-    border-radius: 6px;
-    text-align: center;
-    color: #e2fbf5;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* Submit Button */
+/* Button */
 .btn {
     padding: 13px;
     background: #c4f492;
     border: none;
     border-radius: 6px;
-    margin-top: 10px;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     font-size: 15px;
-    transition: 0.3s;
     color: #000;
+    transition: 0.3s;
 }
 
 .btn:hover {
     background: #b2e681;
 }
 
-/* Login / Signup Links */
+/* Links */
 .links {
-    margin-top: 18px;
+    margin-top: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,17 +141,13 @@ h1 {
     color: #e4f9c9;
     text-decoration: none;
     font-size: 14px;
-    transition: 0.3s;
-}
-
-.links a:hover {
-    opacity: 0.8;
 }
 
 .links .btn {
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.2);
     font-size: 13px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 
 /* ---------------------------
@@ -166,49 +156,98 @@ h1 {
 .right-panel {
     width: 55%;
     background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2")
-        no-repeat center center / cover;
+        no-repeat center / cover;
     position: relative;
 }
 
 .overlay-text {
     position: absolute;
-    bottom: 60px;
-    left: 60px;
+    bottom: 40px;
+    left: 40px;
     background: rgba(0, 0, 0, 0.55);
-    padding: 22px 32px;
+    padding: 22px 28px;
     border-radius: 10px;
+    max-width: 320px;
     color: #fff;
-    max-width: 300px;
 }
 
 .overlay-text h2 {
-    font-size: 28px;
-    font-weight: 600;
+    font-size: 26px;
 }
 
 .overlay-text p {
-    margin-top: 8px;
     font-size: 15px;
-    opacity: 0.9;
+    margin-top: 6px;
 }
 
 /* ---------------------------
-   RESPONSIVE DESIGN
+   FOOTER
+--------------------------- */
+.site-footer {
+    background: #0f172a;
+    color: #cbd5f5;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 8%;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-left {
+    max-width: 300px;
+}
+
+.footer-logo {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links h4 {
+    color: #fff;
+}
+
+.footer-links a {
+    color: #cbd5f5;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #38bdf8;
+}
+
+.footer-bottom {
+    background: #020617;
+    text-align: center;
+    padding: 14px;
+    font-size: 14px;
+}
+
+/* ---------------------------
+   RESPONSIVE
 --------------------------- */
 @media (max-width: 1000px) {
     .signup-container {
         flex-direction: column;
-        height: auto;
     }
 
-    .left-panel {
+    .left-panel,
+    .right-panel {
         width: 100%;
-        padding: 40px;
     }
 
     .right-panel {
-        width: 100%;
-        height: 45vh;
+        height: 40vh;
     }
 
     .overlay-text {
@@ -218,10 +257,10 @@ h1 {
     }
 
     .brand-name {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 28px;
     }
 }
