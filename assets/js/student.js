@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     adminImg.style.cursor = "pointer"; // pointer cursor
 
     adminImg.addEventListener("click", () => {
-        window.location.href = "../view/profile.html"; 
+        window.location.href = "../view/profile.php"; 
     });
 
 });

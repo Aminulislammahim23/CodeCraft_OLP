@@ -1,5 +1,14 @@
 <?php
 session_start();
+$error = [];
+if(isset($_SESSION['signup_error'])){
+    $error = $_SESSION['signup_error'];
+    unset($_SESSION['signup_error']);
+}
+
+$role = $_GET['role'] ?? 'student';
+$_SESSION['signup_role'] = $role;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,40 +31,57 @@ session_start();
         <h1>Create Your Account</h1>
         <p class="subtitle">Start learning and track your coding journey.</p>
 
-        <form class="signup-form" id="signupForm" method="post" action="signup_process.php">
+        <form class="signup-form" id="signupForm" method="post" action="../controller/signupCheck.php">
 
-            <label>Full Name</label>
-            <input type="text" id="fullName" name="fullName" required>
-            <p class="error" id="nameError"></p>
+            <label for="name">Full Name</label>
+             <input type="text" id="name" name="name" value="" />
+                <?php if (isset($errors['name'])): ?>
+                    <p class="error-message"><?php echo $errors['name']; ?></p>
+                <?php endif; ?>
 
-            <label>Email</label>
-            <input type="email" id="email" name="email" required>
-            <p class="error" id="emailError"></p>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value=""/>
+                <?php if (isset($errors['email'])): ?>
+                    <p class="error-message"><?php echo $errors['email']; ?></p>
+                <?php endif; ?>
 
-            <label>Username</label>
-            <input type="text" id="username" name="username" required>
-            <p class="error" id="userError"></p>
 
-            <label>Password</label>
-            <input type="password" id="password" name="password" minlength="8" required>
-            <p class="error" id="passError"></p>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="" />
+                <?php if (isset($errors['username'])): ?>
+                    <p class="error-message"><?php echo $errors['username']; ?></p>
+                <?php endif; ?>
 
-            <label>Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-            <p class="error" id="confirmError"></p>
 
-            <label>Contact Number</label>
-            <input type="text" id="contact" name="contact" required>
-            <p class="error" id="contactError"></p>
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" value=""  />
+                <?php if (isset($errors['dob'])): ?>
+                    <p class="error-message"><?php echo $errors['dob']; ?></p>
+                <?php endif; ?>
 
-            <label>Address</label>
-            <textarea id="address" name="address" required></textarea>
-            <p class="error" id="addressError"></p>
 
-            <div class="captcha-box">
-                Google reCAPTCHA Placeholder
-            </div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+                <?php if (isset($errors['password'])): ?>
+                    <p class="error-message"><?php echo $errors['password']; ?></p>
+                <?php endif; ?>
 
+
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+                <?php if (isset($errors['confirmPassword'])): ?>
+                    <p class="error-message"><?php echo $errors['confirmPassword']; ?></p>
+                <?php endif; ?>
+
+            
+            <input type="hidden" name="role" value="<?php echo htmlspecialchars($_SESSION['signup_role']); ?>">
+            <?php if (isset($errors['general'])): ?>
+                <p class="error-message"><?php echo $errors['general']; ?></p>
+            <?php endif; ?>
+
+            
             <label>
                 <input type="checkbox" id="terms" name="terms"> I agree to Terms & Conditions
             </label>
@@ -81,5 +107,6 @@ session_start();
 </div>
 
 <script src="../assets/js/signup.js"></script>
+
 </body>
 </html>

@@ -44,7 +44,7 @@ if(isset($_GET['error'])){
 
             <div class="links">
                 <a href="forget_password.html">Forgot Password?</a>
-                <a href="signup.php">Create Account</a>
+                <a href="chooseRole.php">Create Account</a>
             </div>
 
         </form>

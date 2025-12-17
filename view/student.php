@@ -7,6 +7,18 @@ session_start();
     require_once('../controller/auth.php');
     checkRole(['student']);   // only student can access
 
+    // require_once('../model/studentModel.php');
+    // $dashboard = [
+    //     'enrolledCourses'   => getEnrolledCoursesCount($_SESSION['user_id']),
+    //     'completedCourses'  => getCompletedCoursesCount($_SESSION['user_id']),
+    //     'certificates'      => getCertificatesCount($_SESSION['user_id'])
+    // ];
+
+    require_once('../model/userModel.php');
+    $id = $_SESSION['user_id'];
+    $userbyID = getUserById($id);
+    $avatarPath = !empty($userbyID['avatar']) ? $userbyID['avatar'] : "assets/upload/default/default.jpg";
+
 ?>
 
 
@@ -39,7 +51,7 @@ session_start();
         <header class="topbar">
             <h1>Welcome, Student!</h1>
             <div class="student-info">
-                <img src="https://i.pravatar.cc/100" alt="Student" id="student">
+                <img src="../<?= htmlspecialchars($avatarPath) ?>" alt="Student" id="student">
                 <span>Mahim</span>
             </div>
         </header>

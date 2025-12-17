@@ -10,10 +10,9 @@
 
 <div class="profile-container">
 
-    <!-- HEADER -->
     <header class="topbar">
         <h2>My Profile</h2>
-        <a class="back" href="student.html">← Back to Dashboard</a>
+        <a class="back" href="student.php">← Back to Dashboard</a>
     </header>
 
     <section class="profile-box">
