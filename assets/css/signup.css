@@ -9,24 +9,25 @@ body {
     background: #f0f4f8;
 }
 
-
 .signup-container {
     display: flex;
     height: 100vh;
 }
 
-
+/* ---------------------------
+   LEFT PANEL
+--------------------------- */
 .left-panel {
     width: 45%;
     background: linear-gradient(135deg, #0f172a, #0ea5a4);
     color: #fff;
-    padding: 60px;
+    padding: 60px 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-
+/* Branding */
 .brand {
     font-size: 28px;
     font-weight: bold;
@@ -37,89 +38,131 @@ body {
 }
 
 .brand-logo {
-    width: 18px;
-    height: 18px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .brand-name {
-    font-size: 60px;
+    font-size: 55px;
+    font-weight: 700;
 }
 
-
+/* Headings */
 h1 {
-    font-size: 38px;
-    margin-bottom: 10px;
+    font-size: 36px;
+    margin-bottom: 8px;
 }
 
 .subtitle {
     opacity: 0.85;
     margin-bottom: 30px;
+    font-size: 15px;
 }
 
-
+/* ---------------------------
+   FORM STYLING
+--------------------------- */
 .signup-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
 .signup-form label {
     font-size: 14px;
-    margin-bottom: -6px;
+    font-weight: 500;
+    margin-bottom: -4px;
 }
 
-.signup-form input {
+.signup-form input,
+.signup-form textarea {
     padding: 12px;
     border-radius: 6px;
     border: none;
     outline: none;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
     transition: 0.3s;
 }
 
-.signup-form input:focus {
-    background: #fff;
-    box-shadow: 0 0 6px rgba(255,255,255,0.7);
+.signup-form textarea {
+    min-height: 80px;
+    resize: none;
 }
 
+.signup-form input:focus,
+.signup-form textarea:focus {
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
 
+/* Error Messages */
+.error {
+    font-size: 12px;
+    color: #ffb4b4;
+    margin-top: -10px;
+    margin-bottom: -6px;
+}
+
+/* Captcha box placeholder */
+.captcha-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 14px;
+    border-radius: 6px;
+    text-align: center;
+    color: #e2fbf5;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Submit Button */
 .btn {
-    padding: 12px;
+    padding: 13px;
     background: #c4f492;
     border: none;
     border-radius: 6px;
     margin-top: 10px;
     font-weight: bold;
     cursor: pointer;
+    font-size: 15px;
     transition: 0.3s;
-    color: black;
+    color: #000;
 }
 
 .btn:hover {
     background: #b2e681;
 }
 
-
+/* Login / Signup Links */
 .links {
     margin-top: 18px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .links a {
     color: #e4f9c9;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    opacity: 0.8;
 }
 
 .links .btn {
     padding: 8px 16px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 13px;
 }
 
-
+/* ---------------------------
+   RIGHT PANEL
+--------------------------- */
 .right-panel {
     width: 55%;
     background: url("https://images.unsplash.com/photo-1515378791036-0648a3ef77b2")
@@ -127,15 +170,15 @@ h1 {
     position: relative;
 }
 
-
 .overlay-text {
     position: absolute;
     bottom: 60px;
     left: 60px;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0, 0, 0, 0.55);
     padding: 22px 32px;
     border-radius: 10px;
     color: #fff;
+    max-width: 300px;
 }
 
 .overlay-text h2 {
@@ -149,20 +192,36 @@ h1 {
     opacity: 0.9;
 }
 
-@media (max-width: 900px) {
+/* ---------------------------
+   RESPONSIVE DESIGN
+--------------------------- */
+@media (max-width: 1000px) {
     .signup-container {
         flex-direction: column;
         height: auto;
     }
 
-    .left-panel,
+    .left-panel {
+        width: 100%;
+        padding: 40px;
+    }
+
     .right-panel {
         width: 100%;
-        height: 55vh;
+        height: 45vh;
     }
 
     .overlay-text {
         left: 20px;
         bottom: 20px;
+        max-width: 90%;
+    }
+
+    .brand-name {
+        font-size: 42px;
+    }
+
+    h1 {
+        font-size: 30px;
     }
 }

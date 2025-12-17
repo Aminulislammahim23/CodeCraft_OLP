@@ -48,11 +48,11 @@
         <ul class="menu">
             <li class="active"><a href="dashboard.html" >Dashboard</a></li>
             <li><a href="users.html">Users</a></li>
-            <li><a href="courses.html">Courses</a></li>
+            <li><a href="courseCatalog.html">Courses</a></li>
             <li><a href="enrollments.html">Enrollments</a></li>
             <li><a href="payments.html">Payments</a></li>
             <li><a href="settings.html">Settings</a></li>
-            <li><a href="../view/login.html" class="Logout">Logout</a></li>
+            <li><a href="../view/login.php" class="Logout">Logout</a></li>
         </ul>
     </aside>
 
