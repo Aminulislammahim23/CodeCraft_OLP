@@ -1,3 +1,27 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['status']) && !isset($_COOKIE['status'])){
+        header('location: ../view/login.php?error=badrequest');
+    }
+
+    require_once('../model/userModel.php');
+
+    // Authentication check
+    if(!isset($_COOKIE['status']) || !isset($_SESSION['user_id'])){
+    header('location: ../view/login.php?error=badrequest');
+    exit();
+    }
+
+    $id = $_SESSION['user_id'];
+    $user = getUserById($id);
+
+    if(!$user){
+    die("User not found!");
+}
+
+    $avatarPath = !empty($user['avatar']) ? $user['avatar'] : "assets/upload/default/default.jpg";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +42,7 @@
     <section class="profile-box">
         <div class="profile-left">
 
-                    <img id="avatarImg" src="https://i.pravatar.cc/150" class="avatar">
+                    <img id="avatarImg" src="../<?= htmlspecialchars($avatarPath) ?>" class="avatar">
                     <input type="file" id="avatarUpload" accept="image/*" hidden>
                     <button class="edit-btn" id="editAvatarBtn">Change Avatar</button>
 
@@ -36,23 +60,25 @@
             <div class="info-grid">
                 <div class="info-item">
                     <label>Full Name</label>
-                    <p id="fullName">Mahim</p>
+                    <p id="joined"><?= htmlspecialchars($user['name']) ?></p>
+                </div>
+
+                <div class="info-item">
+                    <label>Username</label>
+                    <p id="fullName">  <?= htmlspecialchars($_SESSION['username']) ?> </p>
                 </div>
 
                 <div class="info-item">
                     <label>Email</label>
-                    <p id="email">mahim@example.com</p>
+                    <p id="email"><?= htmlspecialchars($user['email']) ?></p>
                 </div>
 
                 <div class="info-item">
-                    <label>Phone</label>
-                    <p id="phone">017XXXXXXXX</p>
+                    <label>Date of Birth</label>
+                    <p id="phone"><?= htmlspecialchars($user['dob']) ?></p>
                 </div>
 
-                <div class="info-item">
-                    <label>Joined</label>
-                    <p id="joined">Nov 2025</p>
-                </div>
+                
             </div>
 
             <h3>Account Settings</h3>
@@ -60,10 +86,10 @@
             <div class="info-grid">
                 <div class="info-item">
                     <label>Password</label>
-                    <p>********</p>
+                    <p id="password"><?= htmlspecialchars($user['password']) ?></p>
                 </div>
                 <div class="info-item">
-                    <button class="change-btn">Change Password</button>
+                    <button class="change-btn" id="changePasswordBtn">Change Password</button>
                 </div>
             </div>
 

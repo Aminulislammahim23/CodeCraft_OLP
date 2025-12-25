@@ -4,37 +4,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const editAvatarBtn = document.getElementById("editAvatarBtn");
     const avatarUpload = document.getElementById("avatarUpload");
     const avatarImg = document.getElementById("avatarImg");
+    const changePasswordBtn = document.getElementById("changePasswordBtn");
 
     const nameText = document.getElementById("fullName");
     const emailText = document.getElementById("email");
     const phoneText = document.getElementById("phone");
+    const passwordText = document.getElementById("password");
 
-    let editing = false;
+    let isEditingProfile = false;
+    let isEditingPassword = false;
 
-
-    // Change Avatar
+    // Avatar upload
     editAvatarBtn.addEventListener("click", () => {
         avatarUpload.click();
     });
 
     avatarUpload.addEventListener("change", function () {
         const file = this.files[0];
-
         if (file) {
-            const imgURL = URL.createObjectURL(file);
-            avatarImg.src = imgURL;
+            avatarImg.src = URL.createObjectURL(file);
         }
     });
 
-    // Edit Profile Fields
+    // Edit profile button
     editBtn.addEventListener("click", () => {
-        if (!editing) enableEditing();
-        else saveProfile();
+        if (!isEditingProfile) {
+            enableProfileEditing();
+        } else {
+            saveProfile();
+        }
     });
 
-    function enableEditing() {
-        editing = true;
-        editBtn.textContent = "Save";
+    // Change password button
+    changePasswordBtn.addEventListener("click", () => {
+        if (!isEditingPassword) {
+            enablePasswordEditing();
+        } else {
+            savePassword();
+        }
+    });
+
+    function enableProfileEditing() {
+        isEditingProfile = true;
+        editBtn.textContent = "Save Profile";
 
         nameText.contentEditable = true;
         emailText.contentEditable = true;
@@ -46,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function saveProfile() {
-        editing = false;
+        isEditingProfile = false;
         editBtn.textContent = "Edit Profile";
 
         nameText.contentEditable = false;
@@ -58,6 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
         phoneText.style.border = "none";
 
         alert("Profile updated successfully!");
+    }
+
+    function enablePasswordEditing() {
+        isEditingPassword = true;
+        changePasswordBtn.textContent = "Save Password";
+
+        passwordText.contentEditable = true;
+        passwordText.style.borderBottom = "1px solid #4f46e5";
+    }
+
+    function savePassword() {
+        isEditingPassword = false;
+        changePasswordBtn.textContent = "Change Password";
+
+        passwordText.contentEditable = false;
+        passwordText.style.border = "none";
+
+        alert("Password changed successfully!");
     }
 
 });
