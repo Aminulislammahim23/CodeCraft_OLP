@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>404 - Page Not Found</title>
+  <title>500 - Server Error</title>
   <link rel="stylesheet" href="/CodeCraft/assets/css/error.css">
 </head>
 <body>
   <div class="error-container">
-    <h1>404</h1>
-    <p>Oops! The page you’re looking for doesn’t exist.</p>
+    <h1>500</h1>
+    <p>Something went wrong on our end. Please try again later.</p>
     <div class="suggestions">
       <a href="/CodeCraft/index.php" class="btn">🏠 Go Home</a>
-      <a href="../login.php" class="btn">🔑 Login</a>
-      <a href="../help.php" class="btn">❓ Help Center</a>
+      <a href="javascript:location.reload()" class="btn">🔄 Retry</a>
+      <a href="/CodeCraft/view/contact.php" class="btn">📩 Contact Support</a>
     </div>
   </div>
 </body>

@@ -41,7 +41,7 @@ session_start();
             <li><a href="#">My Courses</a></li>
             <li><a href="#">Progress</a></li>
             <li><a href="#">Certificates</a></li>
-            <li><a href="../view/profile.html">Profile</a></li>
+            <li><a href="../view/profile.php">Profile</a></li>
             <li><a href="../view/login.php" class="logout">Logout</a></li>
         </ul>
     </aside>
